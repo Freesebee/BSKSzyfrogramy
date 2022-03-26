@@ -43,7 +43,46 @@ namespace BSKSzyfrogramy
 
         public static string DecipherRailFence(string cipher, int rowCount)
         {
-            
+            char[,] array = new char[cipher.Length, rowCount];
+
+            int increment = 1;
+            int row = 0;
+
+            for (int col = 0; col < cipher.Length; col++)
+            {
+                array[col, row] = 'x';
+
+                if (row == rowCount - 1) increment = -1;
+                else if (row == 0) increment = 1;
+
+                row += increment;
+            }
+
+            int cipherIndex = 0;
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                for (int j = 0; j < cipher.Length; j++)
+                {
+                    if (array[j, i] == 'x')
+                    {
+                        array[j, i] = cipher[cipherIndex++];
+                    }
+                }
+            }
+
+            string result = "";
+
+            for (int col = 0; col < cipher.Length; col++)
+            {
+                for (row = 0; row < rowCount; row++)
+                {
+                    char c = array[col, row];
+                    if (c != '\0') result += c;
+                }
+            }
+
+            return result;
         }
 
         public static string MatrixTransp(string ciphertext)
