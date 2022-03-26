@@ -53,7 +53,7 @@ namespace BSKSzyfrogramy
 
         public static string MatrixTransp_B(string ciphertext)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();  //test
         }
     }
 }
