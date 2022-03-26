@@ -43,17 +43,55 @@ namespace BSKSzyfrogramy
 
         public static string DecipherRailFence(string cipher, int rowCount)
         {
-            
+            throw new NotImplementedException();  //test
+
         }
 
-        public static string MatrixTransp(string ciphertext)
+        public static string CipherMatrixTransp(string ciphertext)
         {
-            throw new NotImplementedException();
+            int d = 5;
+            List<int> key = new List<int>() { 3, 4, 1, 5, 2 };
+            string result = "";
+
+            for (int i = 0; i < Math.Ceiling((decimal)ciphertext.Length / key.Count); i++)
+            {
+                int row = i * key.Count;
+                for (int j=0; j< key.Count; j++)  
+                {
+                    int keyValue = key[j];
+
+                    if((row + keyValue - 1) < ciphertext.Length)
+                        result += ciphertext[row + keyValue - 1];
+                }
+            }
+            return result;
+        }
+
+        public static string DecipherMatrixTransp(string ciphertext)
+        {
+            int d = 5;
+            List<int> key = new List<int>() { 3, 4, 1, 5, 2 };
+            //string result = "";
+            char[] result = new char[ciphertext.Length];
+
+
+            for (int i = 0; i < Math.Ceiling((decimal)ciphertext.Length / key.Count); i++)
+            {
+                int row = i * key.Count;
+                for (int j = 0; j < key.Count; j++)
+                {
+                    int keyValue = key[j];
+
+                    if ((row + keyValue - 1) < ciphertext.Length)
+                        result[row + keyValue - 1] = ciphertext[row + j];
+                }
+            }
+            return new string(result);
         }
 
         public static string MatrixTransp_B(string ciphertext)
         {
-            throw new NotImplementedException();  //test
+            throw new NotImplementedException();
         }
     }
 }
