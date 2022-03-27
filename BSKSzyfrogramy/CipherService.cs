@@ -85,14 +85,84 @@ namespace BSKSzyfrogramy
             return result;
         }
 
-        public static string CipherMatrixTransp(string ciphertext, int[] key)
+        public static string CipherMatrixTransp(string ciphertext)
         {
-            throw new NotImplementedException();
+            List<int> key = new List<int>() { 3, 4, 1, 5, 2 };
+            string result = "";
+            double maxRowDouble = Math.Ceiling((double)ciphertext.Length / key.Count);
+            int maxRow = (int)maxRowDouble;
+            char[,] array = new char[key.Count, maxRow];
+
+
+            for (int i = 0; i < key.Count; i++)
+            {
+                for (int j = 0; j < maxRow; j++)
+                {
+
+                    if (i * maxRow + j < ciphertext.Length)
+                        array[i, j] = ciphertext[i * maxRow + j];
+                }
+            }
+            for (int i = 0; i < key.Count; i++)
+            {
+                int keyValue = key[i];
+                for (int j = 0; j < maxRow; j++)
+                {
+                    if (i * (maxRow - 1) + j < ciphertext.Length)
+                        result += array[keyValue - 1, j];
+                }
+            }
+
+            return result;
         }
 
-        public static string DecipherMatrixTransp(string ciphertext, int[] key)
+        public static string DecipherMatrixTransp(string ciphertext)
         {
-            throw new NotImplementedException();
+            List<int> key = new List<int>() { 3, 4, 1, 5, 2 };
+            string result = "";
+
+            double maxRowDouble = Math.Ceiling((double)ciphertext.Length / key.Count);
+            int maxRow = (int)maxRowDouble;
+
+            char[,] array = new char[key.Count, maxRow];
+
+
+            for (int i = 0; i < key.Count; i++)
+            {
+                for (int j = 0; j < maxRow; j++)
+                {
+
+                    if (i * maxRow + j < ciphertext.Length)
+                        array[i, j] = '1';
+                }
+            }
+
+            int counter = 0;
+
+            for (int i = 0; i < key.Count; i++)
+            {
+                int keyValue = key[i];
+                for (int j = 0; j < maxRow; j++)
+                {
+                    if (array[keyValue - 1, j] == '1')
+                    {
+                        array[keyValue - 1, j] = ciphertext[counter];
+                        counter++;
+                    }
+                }
+            }
+
+            for (int i = 0; i < key.Count; i++)
+            {
+                int keyValue = key[i];
+                for (int j = 0; j < maxRow; j++)
+                {
+                    if (i * (maxRow - 1) + j < ciphertext.Length)
+                        result += array[i, j];
+                }
+            }
+
+            return result;
         }
 
         public static string CipherMatrixTransp_B(string cipherText, string key)
@@ -147,3 +217,8 @@ namespace BSKSzyfrogramy
         }
     }
 }
+
+
+
+        
+
