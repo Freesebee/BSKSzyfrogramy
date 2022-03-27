@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "BSKSzyfrogramy": {
+      "commandName": "Project"
+    },
+    "MTK with '_'": {
+      "commandName": "Project",
+      "commandLineArgs": "HERE_IS_A_SECRET_MESSAGE_ENCIPHERED_BY_TRANSPOSITION -m c -a mtk -p CONVENIENCE"
+    },
+    "MTK without spaces": {
+      "commandName": "Project",
+      "commandLineArgs": "HEREISASECRETMESSAGEENCIPHEREDBYTRANSPOSITION -m c -a mtk -p CONVENIENCE"
+    }
+  }
+}
