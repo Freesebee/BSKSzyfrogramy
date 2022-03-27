@@ -49,44 +49,82 @@ namespace BSKSzyfrogramy
 
         public static string CipherMatrixTransp(string ciphertext)
         {
-            int d = 5;
             List<int> key = new List<int>() { 3, 4, 1, 5, 2 };
             string result = "";
+            double maxRowDouble = Math.Ceiling((double)ciphertext.Length / key.Count);
+            int maxRow = (int)maxRowDouble;
+            char[,] array = new char[key.Count, maxRow];
 
-            for (int i = 0; i < Math.Ceiling((decimal)ciphertext.Length / key.Count); i++)
+                
+            for (int i = 0; i < key.Count; i++)
             {
-                int row = i * key.Count;
-                for (int j=0; j< key.Count; j++)  
+                for (int j=0; j<maxRow ; j++)  
                 {
-                    int keyValue = key[j];
 
-                    if((row + keyValue - 1) < ciphertext.Length)
-                        result += ciphertext[row + keyValue - 1];
+                    if(i*maxRow + j < ciphertext.Length)
+                        array[i,j] = ciphertext[i * maxRow + j];
                 }
             }
+            for (int i = 0; i < key.Count; i++)
+            {
+                int keyValue = key[i];
+                for (int j=0; j<maxRow ; j++)  
+                {
+                    if(i * (maxRow - 1)  + j < ciphertext.Length)
+                        result += array[keyValue - 1 ,j];
+                }
+            }
+
             return result;
         }
 
         public static string DecipherMatrixTransp(string ciphertext)
         {
-            int d = 5;
             List<int> key = new List<int>() { 3, 4, 1, 5, 2 };
-            //string result = "";
-            char[] result = new char[ciphertext.Length];
+            string result = "";
+
+            double maxRowDouble = Math.Ceiling((double)ciphertext.Length / key.Count);
+            int maxRow = (int)maxRowDouble;
+
+            char[,] array = new char[key.Count, maxRow];
 
 
-            for (int i = 0; i < Math.Ceiling((decimal)ciphertext.Length / key.Count); i++)
+            for (int i = 0; i < key.Count; i++)
             {
-                int row = i * key.Count;
-                for (int j = 0; j < key.Count; j++)
+                for (int j = 0; j < maxRow; j++)
                 {
-                    int keyValue = key[j];
 
-                    if ((row + keyValue - 1) < ciphertext.Length)
-                        result[row + keyValue - 1] = ciphertext[row + j];
+                    if (i * maxRow + j < ciphertext.Length)
+                        array[i, j] = '1';
                 }
             }
-            return new string(result);
+
+            int counter = 0;
+
+            for (int i = 0; i < key.Count; i++)
+            {
+                int keyValue = key[i];
+                for (int j = 0; j < maxRow; j++)
+                {
+                    if (array[keyValue - 1, j] == '1')
+                    {
+                        array[keyValue - 1, j] = ciphertext[counter];
+                        counter++;
+                    }
+                }
+            }
+
+            for (int i = 0; i < key.Count; i++)
+            {
+                int keyValue = key[i];
+                for (int j = 0; j < maxRow; j++)
+                {
+                    if (i * (maxRow - 1) + j < ciphertext.Length)
+                        result += array[i, j];
+                }
+            }
+
+            return result;
         }
 
         public static string MatrixTransp_B(string ciphertext)
