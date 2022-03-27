@@ -212,7 +212,7 @@ namespace BSKSzyfrogramy
 
                 for (int row = 0; row < rowCount; row++)
                 {
-                    result += mainMatrix[row, col]; 
+                    if(mainMatrix[row, col] != (char)0) result += mainMatrix[row, col]; 
                 }
             }
 
