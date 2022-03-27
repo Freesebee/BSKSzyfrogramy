@@ -10,6 +10,24 @@
     "MTK without spaces": {
       "commandName": "Project",
       "commandLineArgs": "HEREISASECRETMESSAGEENCIPHEREDBYTRANSPOSITION -m c -a mtk -p CONVENIENCE"
+    },
+
+    "Cipher MTN with '_'": {
+      "commandName": "Project",
+      "commandLineArgs": "SECRET_MESSAGE -m c -a mtn -p 3 4 1 5 2 "
+    },
+    "Cipher MTN without spaces": {
+      "commandName": "Project",
+      "commandLineArgs": "SECRETMESSAGE -m c -a mtn -p 3 4 1 5 2"
+    },
+
+    "Decipher MTN with '_'": {
+      "commandName": "Project",
+      "commandLineArgs": "_MESSASECGERET -m d -a mtn -p 3 4 1 5 2"
+    },
+    "Decipher MTN without spaces": {
+      "commandName": "Project",
+      "commandLineArgs": "MESSAGSECERET -m d -a mtn -p 3 4 1 5 2"
     }
   }
 }

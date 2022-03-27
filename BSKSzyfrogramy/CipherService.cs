@@ -85,9 +85,10 @@ namespace BSKSzyfrogramy
             return result;
         }
 
-        public static string CipherMatrixTransp(string ciphertext)
+        public static string CipherMatrixTransp(string ciphertext, int[] keyArray)
         {
-            List<int> key = new List<int>() { 3, 4, 1, 5, 2 };
+            List<int> key = new List<int>() {};
+            key = keyArray.ToList();
             string result = "";
             double maxRowDouble = Math.Ceiling((double)ciphertext.Length / key.Count);
             int maxRow = (int)maxRowDouble;
@@ -116,9 +117,11 @@ namespace BSKSzyfrogramy
             return result;
         }
 
-        public static string DecipherMatrixTransp(string ciphertext)
+        public static string DecipherMatrixTransp(string ciphertext, int[] keyArray)
         {
-            List<int> key = new List<int>() { 3, 4, 1, 5, 2 };
+            List<int> key = new List<int>() {};
+            key = keyArray.ToList();
+
             string result = "";
 
             double maxRowDouble = Math.Ceiling((double)ciphertext.Length / key.Count);
