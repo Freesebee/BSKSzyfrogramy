@@ -14,6 +14,7 @@ namespace BSKSzyfrogramy
             int increment = 1;
             int row = 0;
 
+            //utworzenie macierzy i wpisanie liter
             for (int col = 0; col < ciphertext.Length; col++)
             {
                 array[col, row] = ciphertext[col];
@@ -24,8 +25,8 @@ namespace BSKSzyfrogramy
                 row += increment;
             }
 
+            //odczytanie szyfru wiersz po wierszu
             string result = "";
-
             for (int i = 0; i < rowCount; i++)
             {
                 for (int j = 0; j < ciphertext.Length; j++)
@@ -48,6 +49,8 @@ namespace BSKSzyfrogramy
             int increment = 1;
             int row = 0;
 
+            //oznaczenie komórek macierzy,
+            //w które należy wprowadzić litery szyfru
             for (int col = 0; col < cipher.Length; col++)
             {
                 array[col, row] = 'x';
@@ -58,8 +61,8 @@ namespace BSKSzyfrogramy
                 row += increment;
             }
 
+            //wprowadzenie liter w oznaczone komórki
             int cipherIndex = 0;
-
             for (int i = 0; i < rowCount; i++)
             {
                 for (int j = 0; j < cipher.Length; j++)
@@ -71,8 +74,8 @@ namespace BSKSzyfrogramy
                 }
             }
 
+            //odczytanie zakodowanego słowa
             string result = "";
-
             for (int col = 0; col < cipher.Length; col++)
             {
                 for (row = 0; row < rowCount; row++)
@@ -81,7 +84,6 @@ namespace BSKSzyfrogramy
                     if (c != '\0') result += c;
                 }
             }
-
             return result;
         }
 
@@ -173,9 +175,10 @@ namespace BSKSzyfrogramy
         public static string CipherMatrixTransp(string cipherText, string key)
         {
             int[] keyIndexes = new int[key.Length];
-            key = key.ToLower(); //zabezpieczenie, bo iterujemy po wartościach ASCII
+            key = key.ToLower(); //zabezpieczenie, gdyż iterujemy po wartościach ASCII
             int availableNumber = 1;
 
+            //utworzenie macierzy zawierającej indeksy kolumn do odczytania szyfrogramu
             for (int @char = 'a'; @char < 'z'; @char++)
             {
                 for (int cellIndex = 0; cellIndex < keyIndexes.Length; cellIndex++)
@@ -191,6 +194,7 @@ namespace BSKSzyfrogramy
             char[,] mainMatrix = new char[rowCount, key.Length];
             int cipherTextCharIndex = 0;
 
+            //wprowadzenie liter słowa do macierzy
             for (int row = 0; row < rowCount; row++)
             {
                 for (int col = 0; col < key.Length; col++)
@@ -200,8 +204,8 @@ namespace BSKSzyfrogramy
                 }
             }
 
+            //odczytanie szyfrogramu zgodnie z indeksem kolumn
             string result = "";
-
             for (int currentKeyCol = 1; currentKeyCol < availableNumber; currentKeyCol++)
             {
                 int col = Array.IndexOf(keyIndexes, currentKeyCol);
@@ -213,7 +217,6 @@ namespace BSKSzyfrogramy
             }
 
             return result;
-
         }
 
         public static string DecipherMatrixTransp(string ciphertext, string key)
@@ -277,8 +280,3 @@ namespace BSKSzyfrogramy
         }
     }
 }
-
-
-
-        
-
