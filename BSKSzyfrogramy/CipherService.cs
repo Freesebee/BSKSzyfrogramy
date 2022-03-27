@@ -94,7 +94,7 @@ namespace BSKSzyfrogramy
             int maxRow = (int)maxRowDouble;
             char[,] array = new char[key.Count, maxRow];
 
-
+            //wpisanie oryginalnego tekstu do tabeli
             for (int i = 0; i < key.Count; i++)
             {
                 for (int j = 0; j < maxRow; j++)
@@ -104,6 +104,7 @@ namespace BSKSzyfrogramy
                         array[i, j] = ciphertext[i * maxRow + j];
                 }
             }
+            //skonstruowanie zaszyfrowanego tekstu
             for (int i = 0; i < key.Count; i++)
             {
                 int keyValue = key[i];
@@ -129,7 +130,7 @@ namespace BSKSzyfrogramy
 
             char[,] array = new char[key.Count, maxRow];
 
-
+            //oznaczenie miejsc w tabeli, ktore powinny zostac zapelnione literami
             for (int i = 0; i < key.Count; i++)
             {
                 for (int j = 0; j < maxRow; j++)
@@ -141,7 +142,7 @@ namespace BSKSzyfrogramy
             }
 
             int counter = 0;
-
+            //wpisanie zaszyfrowanego slowa do tabeli
             for (int i = 0; i < key.Count; i++)
             {
                 int keyValue = key[i];
@@ -154,7 +155,7 @@ namespace BSKSzyfrogramy
                     }
                 }
             }
-
+            //odczytanie oryginalnej wiadomosci
             for (int i = 0; i < key.Count; i++)
             {
                 int keyValue = key[i];
