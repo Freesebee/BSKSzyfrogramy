@@ -114,8 +114,9 @@ public static class Program
     }
 
     private const string CorrectSyntax = 
-        "cipher-text " +
-        "[[-m, c(cipher) | d(decipher)], -a, rf (railfence)| mtn (matrix-transposition-number key)| mtk(matrix-transposition with text key)]], " +
+        "cipher-text\n" +
+        "[[-m, c(cipher) | d(decipher)],\n" +
+        "-a, rf (railfence)| mtn (matrix-transp.number key)| mtk(matrix-transp.text key)]],\n" +
         "-p, params:{}";
 }
 

@@ -95,9 +95,50 @@ namespace BSKSzyfrogramy
             throw new NotImplementedException();
         }
 
-        public static string CipherMatrixTransp_B(string ciphertext, string key)
+        public static string CipherMatrixTransp_B(string cipherText, string key)
         {
-            throw new NotImplementedException();
+            int[] keyIndexes = new int[key.Length];
+            key = key.ToLower(); //zabezpieczenie, bo iterujemy po wartościach ASCII
+            int availableNumber = 1;
+
+            for (int @char = 'a'; @char < 'z'; @char++)
+            {
+                for (int cellIndex = 0; cellIndex < keyIndexes.Length; cellIndex++)
+                {
+                    if(key[cellIndex] == @char)
+                    {
+                        keyIndexes[cellIndex] = availableNumber++;
+                    }
+                }
+            }
+
+            int rowCount = (int)Math.Ceiling((double)cipherText.Length / key.Length);
+            char[,] mainMatrix = new char[rowCount, key.Length];
+            int cipherTextCharIndex = 0;
+
+            for (int row = 0; row < rowCount; row++)
+            {
+                for (int col = 0; col < key.Length; col++)
+                {
+                    char currentChar = cipherTextCharIndex < cipherText.Length ? cipherText[cipherTextCharIndex++] : '\0';
+                    mainMatrix[row, col] = currentChar != 0 ? currentChar : ' ';
+                }
+            }
+
+            string result = "";
+
+            for (int currentKeyCol = 1; currentKeyCol < availableNumber; currentKeyCol++)
+            {
+                int col = Array.IndexOf(keyIndexes, currentKeyCol);
+
+                for (int row = 0; row < rowCount; row++)
+                {
+                    result += mainMatrix[row, col]; 
+                }
+            }
+
+            return result;
+
         }
 
         public static string DecipherMatrixTransp_B(string ciphertext, string key)
