@@ -85,14 +85,24 @@ namespace BSKSzyfrogramy
             return result;
         }
 
-        public static string MatrixTransp(string ciphertext)
+        public static string CipherMatrixTransp(string ciphertext, int[] key)
         {
             throw new NotImplementedException();
         }
 
-        public static string MatrixTransp_B(string ciphertext)
+        public static string DecipherMatrixTransp(string ciphertext, int[] key)
         {
-            throw new NotImplementedException();  //test
+            throw new NotImplementedException();
+        }
+
+        public static string CipherMatrixTransp_B(string ciphertext, string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string DecipherMatrixTransp_B(string ciphertext, string key)
+        {
+            throw new NotImplementedException();
         }
     }
 }
