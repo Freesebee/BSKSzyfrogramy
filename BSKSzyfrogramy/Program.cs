@@ -80,11 +80,11 @@ public static class Program
                             alghorithm = (bool)cipherMode!
                                 ? delegate (string text, List<string> additionalArguments)
                                 {
-                                    return CipherService.CipherMatrixTransp_B(text, additionalArguments.First());
+                                    return CipherService.CipherMatrixTransp(text, additionalArguments.First());
                                 }
                                 : delegate (string text, List<string> additionalArguments)
                                 {
-                                    return CipherService.DecipherMatrixTransp_B(text, additionalArguments.First());
+                                    return CipherService.DecipherMatrixTransp(text, additionalArguments.First());
                                 };
 
                             break;

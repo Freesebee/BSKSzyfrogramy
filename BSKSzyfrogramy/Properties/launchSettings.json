@@ -3,15 +3,6 @@
     "BSKSzyfrogramy": {
       "commandName": "Project"
     },
-    "MTK with '_'": {
-      "commandName": "Project",
-      "commandLineArgs": "HERE_IS_A_SECRET_MESSAGE_ENCIPHERED_BY_TRANSPOSITION -m c -a mtk -p CONVENIENCE"
-    },
-    "MTK without spaces": {
-      "commandName": "Project",
-      "commandLineArgs": "HEREISASECRETMESSAGEENCIPHEREDBYTRANSPOSITION -m c -a mtk -p CONVENIENCE"
-    },
-
     "Cipher MTN with '_'": {
       "commandName": "Project",
       "commandLineArgs": "SECRET_MESSAGE -m c -a mtn -p 3 4 1 5 2 "
@@ -20,7 +11,6 @@
       "commandName": "Project",
       "commandLineArgs": "SECRETMESSAGE -m c -a mtn -p 3 4 1 5 2"
     },
-
     "Decipher MTN with '_'": {
       "commandName": "Project",
       "commandLineArgs": "_MESSASECGERET -m d -a mtn -p 3 4 1 5 2"
@@ -28,6 +18,22 @@
     "Decipher MTN without spaces": {
       "commandName": "Project",
       "commandLineArgs": "MESSAGSECERET -m d -a mtn -p 3 4 1 5 2"
+    },
+    "Cipher MTK with '_'": {
+      "commandName": "Project",
+      "commandLineArgs": "HERE_IS_A_SECRET_MESSAGE_ENCIPHERED_BY_TRANSPOSITION -m c -a mtk -p CONVENIENCE"
+    },
+    "Cipher MTK without spaces": {
+      "commandName": "Project",
+      "commandLineArgs": "HEREISASECRETMESSAGEENCIPHEREDBYTRANSPOSITION -m c -a mtk -p CONVENIENCE"
+    },
+    "Decipher MTK without spaces": {
+      "commandName": "Project",
+      "commandLineArgs": "HECRNCEYIISEPSGDIRNTOAAESRMPNSSROEEBTETIAEEHS -m d -a mtk -p CONVENIENCE"
+    },
+    "Decipher MTK with '_'": {
+      "commandName": "Project",
+      "commandLineArgs": "HEGEP_SEN_TNYT_EPRNSARSSMITORR__SI_C_IASHAECEDOEEEBI -m d -a mtk -p CONVENIENCE"
     }
   }
 }

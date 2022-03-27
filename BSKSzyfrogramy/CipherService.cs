@@ -104,6 +104,7 @@ namespace BSKSzyfrogramy
                         array[i, j] = ciphertext[i * maxRow + j];
                 }
             }
+
             //skonstruowanie zaszyfrowanego tekstu
             for (int i = 0; i < key.Count; i++)
             {
@@ -155,10 +156,10 @@ namespace BSKSzyfrogramy
                     }
                 }
             }
+
             //odczytanie oryginalnej wiadomosci
             for (int i = 0; i < key.Count; i++)
             {
-                int keyValue = key[i];
                 for (int j = 0; j < maxRow; j++)
                 {
                     if (i * (maxRow - 1) + j < ciphertext.Length)
@@ -169,7 +170,7 @@ namespace BSKSzyfrogramy
             return result;
         }
 
-        public static string CipherMatrixTransp_B(string cipherText, string key)
+        public static string CipherMatrixTransp(string cipherText, string key)
         {
             int[] keyIndexes = new int[key.Length];
             key = key.ToLower(); //zabezpieczenie, bo iterujemy po wartościach ASCII
@@ -195,7 +196,7 @@ namespace BSKSzyfrogramy
                 for (int col = 0; col < key.Length; col++)
                 {
                     char currentChar = cipherTextCharIndex < cipherText.Length ? cipherText[cipherTextCharIndex++] : '\0';
-                    mainMatrix[row, col] = currentChar != 0 ? currentChar : ' ';
+                    mainMatrix[row, col] = currentChar;
                 }
             }
 
@@ -215,9 +216,64 @@ namespace BSKSzyfrogramy
 
         }
 
-        public static string DecipherMatrixTransp_B(string ciphertext, string key)
+        public static string DecipherMatrixTransp(string ciphertext, string key)
         {
-            throw new NotImplementedException();
+            int[] keyIndexes = new int[key.Length];
+            key = key.ToLower(); //zabezpieczenie, bo iterujemy po wartościach ASCII
+            int availableNumber = 1;
+
+            for (int @char = 'a'; @char < 'z'; @char++)
+            {
+                for (int cellIndex = 0; cellIndex < keyIndexes.Length; cellIndex++)
+                {
+                    if (key[cellIndex] == @char)
+                    {
+                        keyIndexes[cellIndex] = availableNumber++;
+                    }
+                }
+            }
+
+            int maxRow = (int)Math.Ceiling((double)ciphertext.Length / keyIndexes.Length);
+
+            char[,] array = new char[keyIndexes.Length, maxRow];
+
+            //oznaczenie miejsc w tabeli, ktore powinny zostac zapelnione literami
+            int cellsToTag = ciphertext.Length;
+            for (int row = 0; row < maxRow; row++)
+            {
+                for (int col = 0; col < keyIndexes.Length; col++)
+                {
+                    array[col, row] = cellsToTag-- > 0 ? (char)1 : (char)0;
+                }
+            }
+
+            //wpisanie zaszyfrowanego slowa do tabeli
+            int counter = 0;
+            for (int keyIndex = 1; keyIndex <= keyIndexes.Length; keyIndex++)
+            {
+                int col = Array.IndexOf(keyIndexes, keyIndex);
+
+                for (int row = 0; row < maxRow; row++)
+                {
+                    if (array[col, row] == (char)1)
+                    {
+                        array[col, row] = ciphertext[counter++];
+                    }
+                }
+            }
+
+            //odczytanie oryginalnej wiadomosci
+            string result = "";
+
+            for (int row = 0; row < maxRow; row++)
+            {
+                for (int col = 0; col < keyIndexes.Length; col++)
+                {
+                    if(array[col, row] != (char)0) result += array[col, row];
+                }
+            }
+
+            return result;
         }
     }
 }
